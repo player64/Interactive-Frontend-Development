@@ -7,7 +7,7 @@ const loadGoogleMapsApi = require('load-google-maps-api');
  */
 loadGoogleMapsApi(
     {
-        key: 'AIzaSyACc7KrutzJRAbkiTOAMuxM568LrJ8XOjE',
+        key: '',
         libraries: ['places']
     }
 ).then(function (googleMaps) {
