@@ -1,4 +1,14 @@
 $body-color: blue;
+$blue: #0E0EA4;
+$green: #0BC474;
+$red: #710E0E;
+$grey: #D6D6D6;
+
+*,
+:after,
+:before {
+  box-sizing: border-box;
+}
 
 body,
 html {
@@ -10,17 +20,115 @@ main {
   position: relative;
 }
 
-.map {
-  // opacity: 0;
-  transition: transform 0.3s;
-  transform: translateX(-100%);
-  width: 100%;
-  height: 70vh;
-  position: relative;
-}
+body {
+  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
 
-body.showMap {
-  .map {
-    transform: rotateX(0);
+  &.showMap {
+    .map {
+      transform: rotateX(0);
+    }
   }
 }
+
+  .map {
+    // opacity: 0;
+    transition: transform 0.3s;
+    transform: translateX(-100%);
+    width: 100%;
+    height: 70vh;
+    position: relative;
+  }
+
+
+  .searchApp {
+    width: 100%;
+    padding: 50px 15px;
+  }
+
+  .appTitle {
+    text-align: center;
+  }
+
+  .fieldDestination {
+    width: 40%;
+    margin: 15px auto;
+
+    input {
+      width: 100%;
+      padding: 15px 30px;
+      font-size: 18px;
+      border-radius: 5px;
+      border: 1px solid #aaa;
+    }
+  }
+
+  .appNav {
+    width: 40%;
+    margin: 15px auto;
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+
+      li {
+        padding: 0 15px;
+        flex-basis: 33.333%;
+        max-width: 33.333%;
+
+        button {
+          display: block;
+          width: 100%;
+          padding: 7px 15px;
+          cursor: pointer;
+          background-color: #D6D6D6;
+          border: none;
+
+          &:focus {
+            outline: none;
+          }
+
+          &:hover {
+            background-color: darken($grey, 5%);
+          }
+        }
+
+        svg {
+          max-height: 15px;
+          margin-bottom: 5px;
+          width: auto;
+        }
+
+        &.active {
+          button {
+            color: #fff;
+          }
+
+          svg path {
+              fill: #fff;
+          }
+
+          &.hotels {
+            button {
+              background-color: $blue;
+            }
+          }
+
+          &.attractions {
+            button {
+              background-color: $green;
+            }
+          }
+
+          &.bars {
+            button {
+              background-color: $red;
+            }
+          }
+        }
+      }
+    }
+  }
