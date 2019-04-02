@@ -28,18 +28,19 @@ loadGoogleMapsApi(
     let infos = [];
 
     // place type definition
+    const iconPath = '/public/1x';
     const placeType = {
         bars: {
             types: ['food', 'restaurant', 'bar'],
-            icon: '/public/1x/map-restaurant.png'
+            icon: `${iconPath}/map-restaurant.png`
         },
         hotels: {
             types: ['lodging'],
-            icon: '/public/1x/map-hotels.png'
+            icon: `${iconPath}/map-hotels.png`
         },
         attr: {
             types: ['museum', 'art_gallery', 'aquarium', 'stadium'],
-            icon: '/public/1x/map-attractions.png'
+            icon: `${iconPath}/map-attractions.png`
         }
     };
     let markers = [];
@@ -159,6 +160,8 @@ loadGoogleMapsApi(
                 getNextPage = pagination.hasNextPage && function () {
                     pagination.nextPage();
                 };
+            } else {
+                $('#resultsNav').append(`<div class="noResult error-message">No results found</div>`);
             }
         });
     };
@@ -183,15 +186,12 @@ loadGoogleMapsApi(
 
         btnContent += `<div class="resultContent">`;
         btnContent += `<h6 class="resultName">${result.name}</h6>`;
-        btnContent += `</div>`;
-
         if(placeRating(result.rating)) {
             btnContent += `<div class="rating">`;
-            btnContent += `<strong>Rating</strong> ${placeRating(result.rating)}`;
+            btnContent += `Rating ${placeRating(result.rating)}`;
             btnContent += `</div>`;
         }
-
-
+        btnContent += `</div>`;
         button.innerHTML = btnContent;
         $('#resultsNav').append(button);
     };
@@ -237,12 +237,12 @@ loadGoogleMapsApi(
 
         navItems.removeClass('active');
 
-        navItems.each(function (i, item) {
+        navItems.each(function (i) {
             if (i === key) {
                 const _this = $(this);
                 const scrollContainer = $('#resultsNav').parent();
 
-                $(this).addClass('active');
+                _this.addClass('active');
 
                 // calculate top position
                 const topPos = _this.position().top;
@@ -328,4 +328,5 @@ loadGoogleMapsApi(
 
 }).catch(function (error) {
     console.error(error);
+    $('main.searchApp').append('<div class="error-message">There was a problem with load google maps. Error information you find in console</div>');
 });

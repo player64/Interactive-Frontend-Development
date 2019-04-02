@@ -1,0 +1,10 @@
+%flexPosition {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+@mixin flexWidth($width) {
+  flex-basis: $width;
+  max-width: $width;
+}

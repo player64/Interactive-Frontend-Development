@@ -1,4 +1,5 @@
 @import "variables";
+@import "mixins";
 
 .appTitle {
   margin-top: 0;
@@ -41,31 +42,25 @@
 
 .appNav {
   ul {
+    @extend %flexPosition;
     list-style-type: none;
     padding: 0;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     margin: 0 -5px;
     justify-content: center;
 
     li {
       padding: 5px 5px;
-      flex-basis: 50%;
-      max-width: 50%;
+      @include flexWidth(50%);
 
       &:last-child {
-        flex-basis: 100%;
-        max-width: 100%;
+        @include flexWidth(100%);
       }
 
       @media (min-width: 640px) {
-        flex-basis: 33.333%;
-        max-width: 33.333%;
+        @include flexWidth(33.333%);
 
         &:last-child {
-          flex-basis: 33.333%;
-          max-width: 33.333%;
+          @include flexWidth(33.333%);
         }
       }
 
@@ -121,4 +116,10 @@
       }
     }
   }
+}
+
+.error-message {
+  background-color: lighten($red, 60%);
+  color: $red;
+  padding: 15px;
 }
