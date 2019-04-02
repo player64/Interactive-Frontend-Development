@@ -28,7 +28,7 @@ loadGoogleMapsApi(
     let infos = [];
 
     // place type definition
-    const iconPath = '/public/1x';
+    const iconPath = '/Interactive-Frontend-Development/public/1x';
     const placeType = {
         bars: {
             types: ['food', 'restaurant', 'bar'],
