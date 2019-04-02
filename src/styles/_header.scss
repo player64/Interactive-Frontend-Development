@@ -1,0 +1,124 @@
+@import "variables";
+
+.appTitle {
+  margin-top: 0;
+  text-align: center;
+}
+
+.appHeader,
+.searchApp {
+  width: 100%;
+  padding: 30px 15px;
+}
+
+.searchApp {
+  padding: 0;
+}
+
+.fieldDestination,
+.appNav {
+  width: 100%;
+  margin: 15px auto;
+
+  @media (min-width: 1024px) {
+    width: 70%;
+  }
+
+  @media (min-width: 1300px) {
+    width: 40%;
+  }
+}
+
+.fieldDestination {
+  input {
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+  }
+}
+
+.appNav {
+  ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0 -5px;
+    justify-content: center;
+
+    li {
+      padding: 5px 5px;
+      flex-basis: 50%;
+      max-width: 50%;
+
+      &:last-child {
+        flex-basis: 100%;
+        max-width: 100%;
+      }
+
+      @media (min-width: 640px) {
+        flex-basis: 33.333%;
+        max-width: 33.333%;
+
+        &:last-child {
+          flex-basis: 33.333%;
+          max-width: 33.333%;
+        }
+      }
+
+      button {
+        display: block;
+        width: 100%;
+        padding: 7px 15px;
+        cursor: pointer;
+        background-color: #D6D6D6;
+        border: none;
+
+        &:focus {
+          outline: none;
+        }
+
+        &:hover {
+          background-color: darken($grey, 5%);
+        }
+      }
+
+      svg {
+        max-height: 15px;
+        margin-bottom: 5px;
+        width: auto;
+      }
+
+      &.active {
+        button {
+          color: #fff;
+        }
+
+        svg path {
+          fill: #fff;
+        }
+
+        &.hotels {
+          button {
+            background-color: $blue;
+          }
+        }
+
+        &.attractions {
+          button {
+            background-color: $green;
+          }
+        }
+
+        &.bars {
+          button {
+            background-color: $red;
+          }
+        }
+      }
+    }
+  }
+}

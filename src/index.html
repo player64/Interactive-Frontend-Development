@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find your dream holiday with our app</title>
 </head>
 <body>
-<main class="searchApp">
+<header class="appHeader">
     <h1 class="appTitle">Find your dream holiday with our app</h1>
     <section class="fieldDestination">
         <input id="autocomplete" placeholder="Enter your destination" type="text"/>
@@ -43,7 +44,7 @@
                     Tourist Attractions
                 </button>
             </li>
-            <li class="menuItem bars" >
+            <li class="menuItem bars">
                 <button data-target="bars">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><title>ico-restaurants</title>
                         <g id="Layer_2" data-name="Layer 2">
@@ -62,16 +63,13 @@
             </li>
         </ul>
     </nav>
-
-    <section class="results">
-        <div class="map" id="map"></div>
-        <div class="results" id="results">
-            <div class="results-body"></div>
-            <button id="more" disabled>More results</button>
-        </div>
-    </section>
-
-
+</header>
+<main class="searchApp content">
+    <div class="map" id="map"></div>
+    <div class="results">
+        <div class="resultsNav" id="resultsNav"></div>
+        <button id="more" disabled>More results</button>
+    </div>
 </main>
 </body>
 </html>

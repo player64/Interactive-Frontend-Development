@@ -1,134 +1,90 @@
-$body-color: blue;
-$blue: #0E0EA4;
-$green: #0BC474;
-$red: #710E0E;
-$grey: #D6D6D6;
+@import "variables";
+@import "globals";
+@import "header";
 
-*,
-:after,
-:before {
-  box-sizing: border-box;
+body.showMap {
+  .searchApp {
+    opacity: 1;
+  }
 }
 
-body,
-html {
-  margin: 0;
-  padding: 0;
+img {
+  max-width: 100%;
+  height: auto;
 }
 
-main {
+.map {
+  // transform: translateX(-100%);
+  min-height: 70vh;
   position: relative;
 }
 
-body {
-  font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+.searchApp {
+  margin: 0 -15px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  opacity: 0;
+  transition: all 0.3s;
 
-  &.showMap {
-    .map {
-      transform: rotateX(0);
+  .map {
+    flex-basis: 75%;
+    max-width: 75%;
+    padding: 0 15px;
+  }
+
+  .results {
+    flex-basis: 25%;
+    max-width: 25%;
+    padding: 0 15px;
+    max-height: 70vh;
+    overflow-y: scroll;
+  }
+}
+
+// results navigation
+.resultsNav {
+  .result {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 5px 15px;
+    margin: 5px 0;
+    cursor: pointer;
+    // border: 1px solid #d9d9d9;
+
+    &:nth-child(odd) {
+      background-color: #d9d9d9;
+    }
+
+    &.active {
+      background-color: lighten($red, 60%);
+      color: $red;
+    }
+
+    .ico {
+      flex-basis: 30px;
+      max-width: 30px;
+    }
+
+    .resultContent {
+      flex-basis: calc(100% - 30px);
+      max-width: calc(100% - 30px);
+      padding-left: 10px;
+
+      .resultName {
+        margin: 0;
+        font-size: 1.2rem;
+        font-weight: 400;
+      }
+    }
+
+    .rating {
+      flex-basis: 100%;
+      max-width: 100%;
     }
   }
 }
 
-  .map {
-    // opacity: 0;
-    transition: transform 0.3s;
-    transform: translateX(-100%);
-    width: 100%;
-    height: 70vh;
-    position: relative;
-  }
 
-
-  .searchApp {
-    width: 100%;
-    padding: 50px 15px;
-  }
-
-  .appTitle {
-    text-align: center;
-  }
-
-  .fieldDestination {
-    width: 40%;
-    margin: 15px auto;
-
-    input {
-      width: 100%;
-      padding: 15px 30px;
-      font-size: 18px;
-      border-radius: 5px;
-      border: 1px solid #aaa;
-    }
-  }
-
-  .appNav {
-    width: 40%;
-    margin: 15px auto;
-
-    ul {
-      list-style-type: none;
-      padding: 0;
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      margin: 0 -15px;
-
-      li {
-        padding: 0 15px;
-        flex-basis: 33.333%;
-        max-width: 33.333%;
-
-        button {
-          display: block;
-          width: 100%;
-          padding: 7px 15px;
-          cursor: pointer;
-          background-color: #D6D6D6;
-          border: none;
-
-          &:focus {
-            outline: none;
-          }
-
-          &:hover {
-            background-color: darken($grey, 5%);
-          }
-        }
-
-        svg {
-          max-height: 15px;
-          margin-bottom: 5px;
-          width: auto;
-        }
-
-        &.active {
-          button {
-            color: #fff;
-          }
-
-          svg path {
-              fill: #fff;
-          }
-
-          &.hotels {
-            button {
-              background-color: $blue;
-            }
-          }
-
-          &.attractions {
-            button {
-              background-color: $green;
-            }
-          }
-
-          &.bars {
-            button {
-              background-color: $red;
-            }
-          }
-        }
-      }
-    }
-  }
