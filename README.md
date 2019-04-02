@@ -11,7 +11,7 @@ Application is using Google map API and helps user find in selected destination 
 
 
 ## Deployment
-The application is deployed to [GitHub pages](https://player64.github.io/Interactive-Frontend-Development/index.html)
+The application is deployed to [GitHub pages](https://player64.github.io/Interactive-Frontend-Development/index.html) 
 
 ## Source files
 Source files are in src folder
