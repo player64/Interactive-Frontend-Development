@@ -8,7 +8,8 @@
 }
 
 .appHeader {
-  background: linear-gradient(0deg, rgba(#000, 0) 0%, rgba(#000, 0.7) 100%);
+  background: linear-gradient(0deg, rgba(#000, 0) 0%, rgba(#000, 0.8) 100%);
+  //background-color: rgba(0,0,0,.5);
   color: #fff;
 }
 
@@ -79,15 +80,16 @@
         width: 100%;
         padding: 7px 15px;
         cursor: pointer;
-        background-color: #D6D6D6;
+        background-color: #CFEBDF;
         border: none;
+        color: darken(#9BC4CB, 50%);
 
         &:focus {
           outline: none;
         }
 
         &:hover {
-          background-color: darken($grey, 5%);
+          background-color: #9BC4CB;
         }
       }
 
@@ -95,17 +97,25 @@
         max-height: 15px;
         margin-bottom: 5px;
         width: auto;
+
+        path {
+          fill: darken(#9BC4CB, 50%);
+        }
       }
 
       &.active {
         button {
+          // color: darken($bgActive, 45%);
+          // background-color: $bgActive;
           color: #fff;
+          background-color: #710E0E;
         }
 
         svg path {
           fill: #fff;
         }
 
+        /*
         &.hotels {
           button {
             background-color: $blue;
@@ -123,6 +133,8 @@
             background-color: $red;
           }
         }
+
+         */
       }
     }
   }
@@ -137,19 +149,27 @@
 .photoDescription {
   position: absolute;
   max-width: 40%;
+  // min-width: 300px;
   bottom: 30px;
   right: 30px;
-  background-color: rgba(#000, .6);
+  background-color: rgba(#000, .8);
   padding: 15px;
   color: #fff;
   border-radius: 10px;
+  display: none;
+
+  @media (min-width: 768px) {
+    display: block;
+  }
 
   h2 {
     padding-top: 0;
     margin-top: 0;
+    margin-bottom: 0;
   }
   p {
     margin-bottom: 0;
+    margin-top: 10px;
   }
 }
 
@@ -165,8 +185,6 @@
     min-height: 100vh;
     width: auto;
   }
-
-
 }
 
 .showMap {

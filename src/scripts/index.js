@@ -4,7 +4,7 @@ const loadGoogleMapsApi = require('load-google-maps-api');
 
 loadGoogleMapsApi(
     {
-        key: 'Your API key', //
+        key: 'AIzaSyACc7KrutzJRAbkiTOAMuxM568LrJ8XOjE', // Your API key
         libraries: ['places']
     }
 ).then((googleMaps) => {
@@ -28,20 +28,29 @@ loadGoogleMapsApi(
     let infos = [];
 
     // place type definition
-    // const iconPath = '/Interactive-Frontend-Development/public/1x';
-    const iconPath = '/public/1x';
+    const iconPath = '/Interactive-Frontend-Development/public/SVG';
+    // const iconPath = '/public/SVG';
     const placeType = {
         bars: {
             types: ['food', 'restaurant', 'bar'],
-            icon: `${iconPath}/map-restaurant.png`
+            icon: {
+                url: `${iconPath}/map-restaurant.svg`,
+                scaledSize: new googleMaps.Size(35, 35),
+            }
         },
         hotels: {
             types: ['lodging'],
-            icon: `${iconPath}/map-hotels.png`
+            icon: {
+                url: `${iconPath}/map-hotels.svg`,
+                scaledSize: new googleMaps.Size(35, 35),
+            }
         },
         attr: {
             types: ['museum', 'art_gallery', 'aquarium', 'stadium'],
-            icon: `${iconPath}/map-attractions.png`
+            icon: {
+                url: `${iconPath}/map-attractions.svg`,
+                scaledSize: new googleMaps.Size(35, 35),
+            }
         }
     };
     let markers = [];
@@ -78,17 +87,108 @@ loadGoogleMapsApi(
     });
 
     function initMap() {
-        map = new googleMaps.Map(selectors.map, {
-            center: {
-                lat: 53.1976208,
-                lng: 16.6152481
-            },
-            mapTypeControl: false,
-            panControl: false,
-            zoomControl: false,
-            streetViewControl: false,
-            zoom: 5
-        });
+        const mapStyle = {
+            styles: [{"elementType": "geometry", "stylers": [{"color": "#ebe3cd"}]}, {
+                "elementType": "labels.text.fill",
+                "stylers": [{"color": "#523735"}]
+            }, {
+                "elementType": "labels.text.stroke",
+                "stylers": [{"color": "#f5f1e6"}]
+            }, {
+                "featureType": "administrative",
+                "elementType": "geometry.stroke",
+                "stylers": [{"color": "#c9b2a6"}]
+            }, {
+                "featureType": "administrative.land_parcel",
+                "elementType": "geometry.stroke",
+                "stylers": [{"color": "#dcd2be"}]
+            }, {
+                "featureType": "administrative.land_parcel",
+                "elementType": "labels.text.fill",
+                "stylers": [{"color": "#ae9e90"}]
+            }, {
+                "featureType": "landscape.natural",
+                "elementType": "geometry",
+                "stylers": [{"color": "#dfd2ae"}]
+            }, {
+                "featureType": "poi",
+                "elementType": "geometry",
+                "stylers": [{"color": "#dfd2ae"}]
+            }, {
+                "featureType": "poi",
+                "elementType": "labels.text.fill",
+                "stylers": [{"color": "#93817c"}]
+            }, {
+                "featureType": "poi.park",
+                "elementType": "geometry.fill",
+                "stylers": [{"color": "#a5b076"}]
+            }, {
+                "featureType": "poi.park",
+                "elementType": "labels.text.fill",
+                "stylers": [{"color": "#447530"}]
+            }, {
+                "featureType": "road",
+                "elementType": "geometry",
+                "stylers": [{"color": "#f5f1e6"}]
+            }, {
+                "featureType": "road.arterial",
+                "elementType": "geometry",
+                "stylers": [{"color": "#fdfcf8"}]
+            }, {
+                "featureType": "road.highway",
+                "elementType": "geometry",
+                "stylers": [{"color": "#f8c967"}]
+            }, {
+                "featureType": "road.highway",
+                "elementType": "geometry.stroke",
+                "stylers": [{"color": "#e9bc62"}]
+            }, {
+                "featureType": "road.highway.controlled_access",
+                "elementType": "geometry",
+                "stylers": [{"color": "#e98d58"}]
+            }, {
+                "featureType": "road.highway.controlled_access",
+                "elementType": "geometry.stroke",
+                "stylers": [{"color": "#db8555"}]
+            }, {
+                "featureType": "road.local",
+                "elementType": "labels.text.fill",
+                "stylers": [{"color": "#806b63"}]
+            }, {
+                "featureType": "transit.line",
+                "elementType": "geometry",
+                "stylers": [{"color": "#dfd2ae"}]
+            }, {
+                "featureType": "transit.line",
+                "elementType": "labels.text.fill",
+                "stylers": [{"color": "#8f7d77"}]
+            }, {
+                "featureType": "transit.line",
+                "elementType": "labels.text.stroke",
+                "stylers": [{"color": "#ebe3cd"}]
+            }, {
+                "featureType": "transit.station",
+                "elementType": "geometry",
+                "stylers": [{"color": "#dfd2ae"}]
+            }, {
+                "featureType": "water",
+                "elementType": "geometry.fill",
+                "stylers": [{"color": "#b9d3c2"}]
+            }, {"featureType": "water", "elementType": "labels.text.fill", "stylers": [{"color": "#92998d"}]}]
+        };
+
+        map = new googleMaps.Map(selectors.map, mapStyle,
+            {
+                center: {
+                    lat: 53.1976208,
+                    lng: 16.6152481
+                },
+                mapTypeControl: false,
+                panControl: false,
+                zoomControl: false,
+                streetViewControl: false,
+                zoom: 5
+            });
 
         autocomplete = new googleMaps.places.Autocomplete(selectors.autocomplete, {
             types: ['(cities)']
@@ -337,13 +437,28 @@ loadGoogleMapsApi(
             'Kuala Lumpur',
             'Tokyo',
             'Istanbul',
+            'Miami',
+            'Budapest',
+            'Alicante',
+            'Valletta',
             'Seoul',
             'Antalya',
             'Phuket',
             'Hong Kong',
             'Milan',
-            'Palma de Mallorca',
+            'Mallorca',
             'Barcelona',
+            'Dublin',
+            'Warsaw',
+            'Prague',
+            'Moscow',
+            'Dubrovnik',
+            'Lisbon',
+            'Rome',
+            'Buenos Aires',
+            'Rio de Janeiro',
+            'Honolulu',
+            'Las Vegas',
             'Pattaya',
             'Osaka',
             'Bali'
@@ -356,11 +471,11 @@ loadGoogleMapsApi(
             title: destinations[placeKey]
         };
 
-        const apiKey = 'Your Api Key';
-
+        // const apiKey = 'Your Api Key';
+        const apiKey = '0bc262d97de25b0b73334d9fb249196d2dc8a5d8053b762276866b0bb0a7641e';
         let apiUrl = `https://api.unsplash.com/search/photos/?client_id=${apiKey}&orientation=landscape`;
         apiUrl += `&query=${choosenPlace.encoded}`;
-
+        console.log(apiUrl);
         $.ajax({
             type: 'GET',
             url: apiUrl,
@@ -374,9 +489,14 @@ loadGoogleMapsApi(
 
                 const body = $('body');
                 body.append(infoContent);
+                const img = `<img src="${place.urls.full}" alt="${place.alt_description}" class="bgImg">`;
 
-                body.prepend(`
-                    <img src="${place.urls.full}" class="bgImg" alt="${place.alt_description}" />`);
+                $(img).one('load', () => {
+                    body.prepend(img);
+                    body.removeClass('loading');
+                });
+
+
             },
         });
     };
