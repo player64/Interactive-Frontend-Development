@@ -4,7 +4,7 @@ const loadGoogleMapsApi = require('load-google-maps-api');
 
 loadGoogleMapsApi(
     {
-        key: 'AIzaSyACc7KrutzJRAbkiTOAMuxM568LrJ8XOjE', // Your API key
+        key: 'Your API key', //
         libraries: ['places']
     }
 ).then((googleMaps) => {
@@ -471,8 +471,7 @@ loadGoogleMapsApi(
             title: destinations[placeKey]
         };
 
-        // const apiKey = 'Your Api Key';
-        const apiKey = '0bc262d97de25b0b73334d9fb249196d2dc8a5d8053b762276866b0bb0a7641e';
+        const apiKey = 'Your API key';
         let apiUrl = `https://api.unsplash.com/search/photos/?client_id=${apiKey}&orientation=landscape`;
         apiUrl += `&query=${choosenPlace.encoded}`;
         $.ajax({
