@@ -4,7 +4,7 @@ const loadGoogleMapsApi = require('load-google-maps-api');
 
 loadGoogleMapsApi(
     {
-        key: 'Your API key',
+        key: 'Your API key', //
         libraries: ['places']
     }
 ).then((googleMaps) => {
@@ -28,7 +28,8 @@ loadGoogleMapsApi(
     let infos = [];
 
     // place type definition
-    const iconPath = '/Interactive-Frontend-Development/public/1x';
+    // const iconPath = '/Interactive-Frontend-Development/public/1x';
+    const iconPath = '/public/1x';
     const placeType = {
         bars: {
             types: ['food', 'restaurant', 'bar'],
@@ -186,7 +187,7 @@ loadGoogleMapsApi(
 
         btnContent += `<div class="resultContent">`;
         btnContent += `<h6 class="resultName">${result.name}</h6>`;
-        if(placeRating(result.rating)) {
+        if (placeRating(result.rating)) {
             btnContent += `<div class="rating">`;
             btnContent += `Rating ${placeRating(result.rating)}`;
             btnContent += `</div>`;
@@ -321,6 +322,70 @@ loadGoogleMapsApi(
             markers[key].setMap(map);
         };
     };
+
+    // load the picture by using UNPLASH API
+    const loadBgPicture = () => {
+        // defined destinations
+        const destinations = [
+            'Bangkok',
+            'London',
+            'Paris',
+            'Dubai',
+            'Berlin',
+            'Singapore',
+            'New York',
+            'Kuala Lumpur',
+            'Tokyo',
+            'Istanbul',
+            'Seoul',
+            'Antalya',
+            'Phuket',
+            'Hong Kong',
+            'Milan',
+            'Palma de Mallorca',
+            'Barcelona',
+            'Pattaya',
+            'Osaka',
+            'Bali'
+        ];
+
+        const placeKey = getRandomArray(destinations);
+
+        const choosenPlace = {
+            encoded: encodeURI(destinations[placeKey]).toLowerCase(),
+            title: destinations[placeKey]
+        };
+
+        const apiKey = 'Your Api Key';
+
+        let apiUrl = `https://api.unsplash.com/search/photos/?client_id=${apiKey}&orientation=landscape`;
+        apiUrl += `&query=${choosenPlace.encoded}`;
+
+        $.ajax({
+            type: 'GET',
+            url: apiUrl,
+            async: true,
+            success: (response) => {
+                const place = response.results[getRandomArray(response.results)];
+                let infoContent = `<div class="photoDescription">`;
+                infoContent += `<h2>${choosenPlace.title}</h2>`;
+                infoContent += (place.description) ? `<p>${place.description}</p>` : '';
+                infoContent += '</div>';
+
+                const body = $('body');
+                body.append(infoContent);
+
+                body.prepend(`
+                    <img src="${place.urls.full}" class="bgImg" alt="${place.alt_description}" />`);
+            },
+        });
+    };
+
+    const getRandomArray = (array) => {
+        return Math.floor(Math.random() * Math.floor(array.length));
+    };
+
+    loadBgPicture();
 
     // fire the app
     initMap();

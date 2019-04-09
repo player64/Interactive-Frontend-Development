@@ -82,6 +82,10 @@ img {
       background-color: #d9d9d9;
     }
 
+    &:nth-child(even) {
+      background-color: #fff;
+    }
+
     &.active {
       background-color: lighten($red, 60%);
       color: $red;
