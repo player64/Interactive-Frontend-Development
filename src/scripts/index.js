@@ -4,12 +4,11 @@ const loadGoogleMapsApi = require('load-google-maps-api');
 
 loadGoogleMapsApi(
     {
-        key: 'AIzaSyACc7KrutzJRAbkiTOAMuxM568LrJ8XOjE', //
+        key: 'AIzaSyACc7KrutzJRAbkiTOAMuxM568LrJ8XOjE',
         libraries: ['places']
     }
 ).then((googleMaps) => {
 
-    //document.querySelector('.map')
     // document selectors
     const selectors = {
         map: document.getElementById('map'),
@@ -29,7 +28,7 @@ loadGoogleMapsApi(
 
     // place type definition
     const iconPath = '/Interactive-Frontend-Development/public/SVG';
-    // const iconPath = '/public/SVG';
+
     const placeType = {
         bars: {
             types: ['food', 'restaurant', 'bar'],
@@ -423,81 +422,38 @@ loadGoogleMapsApi(
         };
     };
 
-    // load the picture by using UNPLASH API
     const loadBgPicture = () => {
         // defined destinations
         const destinations = [
-            'Bangkok',
             'London',
-            'Paris',
-            'Dubai',
-            'Berlin',
-            'Singapore',
-            'New York',
-            'Kuala Lumpur',
-            'Tokyo',
-            'Istanbul',
-            'Miami',
-            'Budapest',
-            'Alicante',
-            'Valletta',
-            'Seoul',
-            'Antalya',
             'Phuket',
-            'Hong Kong',
-            'Milan',
-            'Mallorca',
-            'Barcelona',
-            'Dublin',
-            'Warsaw',
-            'Prague',
-            'Moscow',
-            'Dubrovnik',
             'Lisbon',
-            'Rome',
-            'Buenos Aires',
-            'Rio de Janeiro',
-            'Honolulu',
-            'Las Vegas',
-            'Pattaya',
-            'Osaka',
+            'Dubrovnik',
+            'Dubai',
             'Bali'
         ];
 
         const placeKey = getRandomArray(destinations);
-
-        const choosenPlace = {
-            encoded: encodeURI(destinations[placeKey]).toLowerCase(),
+        const chosenPlace = {
+            encoded: destinations[placeKey].toLowerCase(),
             title: destinations[placeKey]
         };
-
-        // const apiKey = 'Your Api Key';
-        const apiKey = '0bc262d97de25b0b73334d9fb249196d2dc8a5d8053b762276866b0bb0a7641e';
-        let apiUrl = `https://api.unsplash.com/search/photos/?client_id=${apiKey}&orientation=landscape`;
-        apiUrl += `&query=${choosenPlace.encoded}`;
-        $.ajax({
-            type: 'GET',
-            url: apiUrl,
-            async: true,
-            success: (response) => {
-                const place = response.results[getRandomArray(response.results)];
-                let infoContent = `<div class="photoDescription">`;
-                infoContent += `<h2>${choosenPlace.title}</h2>`;
-                infoContent += (place.description) ? `<p>${place.description}</p>` : '';
-                infoContent += '</div>';
-
-                const body = $('body');
-                body.append(infoContent);
-                const img = `<img src="${place.urls.full}" alt="${place.alt_description}" class="bgImg">`;
-
-                $(img).one('load', () => {
-                    body.prepend(img);
-                    body.removeClass('loading');
-                });
-
-
-            },
-        });
+        const imgPath = '/Interactive-Frontend-Development/public/images';
+        const bgPicture = `
+            <picture>
+                <source media="(min-width: 1600px)" srcset="${imgPath}/${chosenPlace.encoded}-xl.jpg">
+                <source media="(min-width:421px) and (orientation: portrait)" srcset="${imgPath}/${chosenPlace.encoded}-md-portrait.jpg">
+                <source media="(orientation: landscape) and (max-width: 767px)" srcset="${imgPath}/${chosenPlace.encoded}-sm-landscape.jpg">
+                <source media="(orientation: portrait) and (max-width: 450px)" srcset="${imgPath}/${chosenPlace.encoded}-sm-portrait.jpg">
+                <img src="${imgPath}/${chosenPlace.encoded}-lg.jpg" alt="${chosenPlace.title}" class="bgImg">
+            </picture>
+        `;
+        const body = $('body');
+        let infoContent = `<div class="photoDescription">`;
+        infoContent += `<h2>${chosenPlace.title}</h2>`;
+        infoContent += '</div>';
+        body.prepend(bgPicture);
+        body.append(infoContent);
     };
 
     /* it returns random key from the array */

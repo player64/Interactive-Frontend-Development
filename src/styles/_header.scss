@@ -9,7 +9,6 @@
 
 .appHeader {
   background: linear-gradient(0deg, rgba(#000, 0) 0%, rgba(#000, 0.8) 100%);
-  //background-color: rgba(0,0,0,.5);
   color: #fff;
 }
 
@@ -105,8 +104,6 @@
 
       &.active {
         button {
-          // color: darken($bgActive, 45%);
-          // background-color: $bgActive;
           color: #fff;
           background-color: #710E0E;
         }
@@ -114,27 +111,6 @@
         svg path {
           fill: #fff;
         }
-
-        /*
-        &.hotels {
-          button {
-            background-color: $blue;
-          }
-        }
-
-        &.attractions {
-          button {
-            background-color: $green;
-          }
-        }
-
-        &.bars {
-          button {
-            background-color: $red;
-          }
-        }
-
-         */
       }
     }
   }
@@ -149,7 +125,6 @@
 .photoDescription {
   position: absolute;
   max-width: 40%;
-  // min-width: 300px;
   bottom: 30px;
   right: 30px;
   background-color: rgba(#000, .8);
@@ -180,8 +155,9 @@
   z-index: -1;
   left: 0;
   top: 0;
+  width: 100%;
 
-  @media (max-width: 1300px) {
+  @media (orientation: portrait) {
     min-height: 100vh;
     width: auto;
   }
