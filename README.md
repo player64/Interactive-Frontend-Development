@@ -6,7 +6,7 @@ It's helping find in selected destination:
 * Bars and restaurants
 
 ## UX
-The project is built in the minimal layout on start a user needs to type into the type field the destination which it uses google autocomplete API so suggested results are appearing automatically and filter the results during typing. After selecting the destination the results are appearing in a readable way after clicking the element on the result navigation or on the map it's showing the place information such as address, website, rating, phone number. User can filter the results.
+The project is built in the minimal layout on start a user needs to type into the type field the destination which it uses google autocomplete API so suggested results are appearing automatically and filter the results during typing. After selecting the destination the results are appearing in a readable way after clicking the element on the result navigation or on the map it's showing the place information such as an address, website, rating, phone number. User can filter the results.
 
 [The wireframe](https://xd.adobe.com/view/cff591a8-68c9-4de2-64fb-f9895b978a5c-b9c4/)
 
