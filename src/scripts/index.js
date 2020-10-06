@@ -87,7 +87,12 @@ loadGoogleMapsApi(
 
     function initMap() {
         const mapStyle = {
-            styles: [{"elementType": "geometry", "stylers": [{"color": "#ebe3cd"}]}, {
+            styles: [
+              {
+                  "elementType": "geometry",
+                  "stylers": [{"color": "#ebe3cd"}]
+
+              }, {
                 "elementType": "labels.text.fill",
                 "stylers": [{"color": "#523735"}]
             }, {
